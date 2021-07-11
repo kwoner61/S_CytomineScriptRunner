@@ -1,0 +1,150 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <title>Untitled</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <style>
+    .grid-container{display:grid;grid-template-columns:repeat(2,1fr);grid-template-rows:repeat(2,1fr);grid-column-gap:0;grid-row-gap:0;align-items:start}.padded{padding:1.5vw}.div1{grid-area:1/1/2/2;height:85%}.div2{grid-area:1/2/2/3;height:85%}.div3{grid-area:2/1/3/2;height:85%}.div4{grid-area:2/2/3/3;height:85%}.flex-container{display:flex;flex-direction:row;align-items:normal;height:100%}.image{width:100%;height:100%}.flex-items label{font-size:30px;padding-right:5px}.flex-items{display:block;flex-grow:0;flex-shrink:1;flex-basis:auto;align-self:auto;order:0}figure{margin:0;height:100%}figcaption{background-color:#000;color:#fff;font-style:italic;padding:2px;text-align:center}.div3{width:90%;margin:0 auto}table.GeneratedTable{width:100%;background-color:#fff;border-collapse:collapse;border-width:1px;border-color:#000;border-style:solid;color:#000}table.GeneratedTable td,table.GeneratedTable th{border-width:1px;border-color:#000;border-style:solid;padding:5px;text-align:center}table.GeneratedTable thead{background-color:#f0f6ff}
+  </style>
+  <!-- <link rel="stylesheet" type="text/css" href="./combined_report.css"> -->
+  <!-- <link rel="stylesheet" type="text/css" href="./reset.css"> -->
+</head>
+
+<body>
+  <div class="grid-container">
+    <div class="div1 padded">
+      <div class="flex-container">
+        <div class="flex-items">
+          <label>A</label>
+        </div>
+        <div class="flex-items">
+          <figure>
+            <img class="image" id="img0" src="https://via.placeholder.com/900">
+            <figcaption id="fig0">Magnification 5X</figcaption>
+          </figure>
+        </div>
+        <div class="flex-items">
+          <figure>
+            <img class="image" id ="img1" src="https://via.placeholder.com/900">
+            <figcaption id="fig1">Segmented with K-Means; k=k</figcaption>
+          </figure>
+        </div>
+      </div><!-- End of flex container -->
+    </div><!-- End of quad -->
+
+    <div class="div2 padded">
+      <div class="flex-container">
+        <div class="flex-items">
+          <label>B</label>
+        </div>
+        <div class="flex-items">
+          <figure>
+            <img class="image" id="img2" src="https://via.placeholder.com/900">
+            <figcaption id="fig2">Magnification 5X</figcaption>
+          </figure>
+        </div>
+        <div class="flex-items">
+          <figure>
+            <img class="image" id ="img3" src="https://via.placeholder.com/900">
+            <figcaption id="fig3">Segmented with K-Means; k=k</figcaption>
+          </figure>
+        </div>
+      </div><!-- End of flex container -->
+    </div><!-- End of quad -->
+
+    <div class="div3 padded">
+      <section class="div3-table-container">
+        <table class="GeneratedTable">
+          <thead>
+            <tr>
+              <th rowspan="2"></th>
+              <th>A</th>
+              <th>B</th>
+              <th>C</th>
+              <th rowspan="2" colspan="2">New Color [R,G,B]</th>
+            </tr>
+            <tr>
+              <th>Area %</th>
+              <th>Area %</th>
+              <th>Area %</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>Air</td>
+              <td id="A1">0</td>
+              <td id="B1">0</td>
+              <td id="C1">0</td>
+              <td style="background-color: rgb(250, 250, 250);"></td>
+              <td>[250, 250, 250]</td>
+            </tr>
+            <tr>
+              <td id="tissue_column_rowspan" rowspan="5">"Tissue"</td>
+              <td id="A2">0</td>
+              <td id="B2">0</td>
+              <td id="C2">0</td>
+              <td style="background-color: rgb(30, 30, 30);"></td>
+              <td>[30, 30, 30]</td>
+            </tr>
+            <tr>
+              <td id="A3">0</td>
+              <td id="B3">0</td>
+              <td id="C3">0</td>
+              <td style="background-color: rgb(255, 0, 0);"></td>
+              <td>[255, 0, 0]</td>
+            </tr>
+            <tr>
+              <td id="A4">0</td>
+              <td id="B4">0</td>
+              <td id="C4">0</td>
+              <td style="background-color: rgb(0, 255, 0);"></td>
+              <td>[0, 255, 0]</td>
+            </tr>
+            <tr>
+              <td id="A5">0</td>
+              <td id="B5">0</td>
+              <td id="C5">0</td>
+              <td style="background-color: rgb(0, 0, 255);"></td>
+              <td>[0, 0, 255]</td>
+            </tr>
+            <tr>
+              <td id="A6">0</td>
+              <td id="B6">0</td>
+              <td id="C6">0</td>
+              <td style="background-color: rgb(255, 255, 102);"></td>
+              <td>[255, 255, 102]</td>
+            </tr>
+          </tbody>
+        </table>
+      </section>
+      <section class="div3-text-container">
+        <p>
+          Lorem Ipsum Dolor Segmentation.
+        </p>
+      </section>
+    </div>
+
+    <div class="div4 padded">
+      <div class="flex-container">
+        <div class="flex-items">
+          <label>C</label>
+        </div>
+        <div class="flex-items">
+          <figure>
+            <img class="image" id="img4" src="https://via.placeholder.com/900">
+            <figcaption id="fig4">Magnification 5X</figcaption>
+          </figure>
+        </div>
+        <div class="flex-items">
+          <figure>
+            <img class="image" id ="img5" src="https://via.placeholder.com/900">
+            <figcaption id="fig5">Segmented with K-Means; k=k</figcaption>
+          </figure>
+        </div>
+      </div><!-- End of flex container -->
+    </div><!-- End of quad -->
+  </div><!-- End of grid container -->
+</body>
+
+</html>
