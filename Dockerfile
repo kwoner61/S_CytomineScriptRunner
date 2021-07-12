@@ -7,4 +7,6 @@ ADD combined_report_template.html /CytomineScriptRunner/combined_report_template
 ADD segscript.py /CytomineScriptRunner/segscript.py
 ADD app.py /CytomineScriptRunner/app.py
 
+RUN chmod -R 777 /CytomineScriptRunner
+
 ENTRYPOINT ["python", "/CytomineScriptRunner/app.py"]
