@@ -1,7 +1,6 @@
 import numpy as np
 import pandas as pd
 from bs4 import BeautifulSoup
-from PIL import Image
 from sklearn.cluster import KMeans
 
 
@@ -9,7 +8,7 @@ def rgb_mask(segmented_image, clusters):
   # TODO: Fix finding max of r,g,b values max(clusters, key=lambda k...
   n=6
   # clusters: key=rgb_sum --> value=[r, g, b, area]
-  data = np.array(segmented_image)
+  data = segmented_image
   color_map = []
 
   # Find & Replace White
@@ -44,7 +43,7 @@ def rgb_mask(segmented_image, clusters):
     cluster_key = min(clusters.keys())
     replace_rgb(r, g, b, cluster_key, clusters, data, color_map)
 
-  return Image.fromarray(data), color_map
+  return data, color_map
 
 
 def replace_rgb(r, g, b, rgb_sum, clusters, data, color_map):
@@ -88,7 +87,7 @@ def K_means_seg(img, n):
     rgb_sum = sum([rgb[0], rgb[1], rgb[2]])
     stats[rgb_sum] = [rgb[0], rgb[1], rgb[2], area_perc]
 
-  return Image.fromarray(img_seg), stats
+  return img_seg, stats
 
 
 def generate_combined_report(n, image_names, seg_img_names, stats_lists, report_file, template_file):

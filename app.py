@@ -2,6 +2,7 @@ import os
 import sys
 
 import cv2
+from PIL import Image
 from cytomine import CytomineJob
 from cytomine.models import AnnotationCollection, Job, JobData
 
@@ -37,7 +38,7 @@ def main(argv):
       seg, stats = segscript.K_means_seg(img, n)
       masked, updated_stats = segscript.rgb_mask(seg, stats.copy())
       
-      masked.save(os.path.join(working_dir, seg_image_name))
+      Image.fromarray(masked).save(os.path.join(working_dir, seg_image_name))
       masked_uri = upload_job_data(cj.job.id, seg_image_name, os.path.join(working_dir, seg_image_name))
       
       image_names.append(get_img_src(img_uri))
