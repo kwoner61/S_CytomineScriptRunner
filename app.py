@@ -36,7 +36,7 @@ def main(argv):
       img_uri = upload_job_data(cj.job.id, img_name, img_src)
 
       seg, stats = segscript.K_means_seg(img, n)
-      masked, updated_stats = segscript.rgb_mask(seg, stats.copy())
+      masked, updated_stats = segscript.rgb_mask(n, seg, stats.copy())
       
       Image.fromarray(masked).save(os.path.join(working_dir, seg_image_name))
       masked_uri = upload_job_data(cj.job.id, seg_image_name, os.path.join(working_dir, seg_image_name))

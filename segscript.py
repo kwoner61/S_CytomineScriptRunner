@@ -1,57 +1,52 @@
 import numpy as np
 import pandas as pd
+from math import pow, sqrt
 from bs4 import BeautifulSoup
 from sklearn.cluster import KMeans
 
 
-def rgb_mask(segmented_image, clusters):
-  # TODO: Fix finding max of r,g,b values max(clusters, key=lambda k...
-  n=6
+def rgb_mask(k, segmented_image, clusters):
   # clusters: key=rgb_sum --> value=[r, g, b, area]
-  data = segmented_image
   color_map = []
 
   # Find & Replace White
-  r,g,b = 250,250,250
-  cluster_key = max(clusters.keys())
-  replace_rgb(r, g, b, cluster_key, clusters, data, color_map)
+  replace_rgb(250,250,250, clusters, segmented_image, color_map)
 
   # Find & Replace Black
-  r,g,b = 30,30,30
-  cluster_key = min(clusters.keys())
-  replace_rgb(r, g, b, cluster_key, clusters, data, color_map)
-
-  # Find & Replace Red
-  r,g,b = 255,0,0
-  cluster_key = max(clusters, key=lambda k: clusters[k][0])
-  replace_rgb(r, g, b, cluster_key, clusters, data, color_map)
+  replace_rgb(30,30,30, clusters, segmented_image, color_map)
 
   # Find & Replace Green
-  r,g,b = 0,255,0
-  cluster_key = max(clusters, key=lambda k: clusters[k][1])
-  replace_rgb(r, g, b, cluster_key, clusters, data, color_map)
+  replace_rgb(0,255,0, clusters, segmented_image, color_map)
+
+  # Find & Replace Red
+  replace_rgb(255,0,0, clusters, segmented_image, color_map)
 
   # Find & Replace Blue
-  if n > 4:
-    r,g,b = 0,0,255
-    cluster_key = max(clusters, key=lambda k: clusters[k][2])
-    replace_rgb(r, g, b, cluster_key, clusters, data, color_map)
+  if k > 4:
+    replace_rgb(0,0,255, clusters, segmented_image, color_map)
 
   # Find & Replace 6th color
-  if n > 5:
-    r,g,b = 255,255,102
-    cluster_key = min(clusters.keys())
-    replace_rgb(r, g, b, cluster_key, clusters, data, color_map)
+  if k > 5:
+    replace_rgb(255,255,102, clusters, segmented_image, color_map)
 
-  return data, color_map
+  return segmented_image, color_map
 
 
-def replace_rgb(r, g, b, rgb_sum, clusters, data, color_map):
-  cluster = clusters.pop(rgb_sum)
+def replace_rgb(r, g, b, clusters, data, color_map):
+  cluster = find_nearest_cluster(r, g, b, clusters)
   red, green, blue = data[:,:,0], data[:,:,1], data[:,:,2]
   mask = (red == cluster[0]) & (green == cluster[1]) & (blue == cluster[2])
   data[:,:,:3][mask] = [r, g, b]
   color_map.append(cluster + [r, g, b])
+
+
+def find_nearest_cluster(r, g, b, clusters):
+  min_key, min_dist = 0, float('inf')
+  for key, color in clusters.items():
+    dist = sqrt(pow(r-color[0], 2) + pow(g-color[1], 2) + pow(b-color[2], 2))
+    if dist <= min_dist:
+      min_dist, min_key = dist, key
+  return clusters.pop(min_key)
 
 
 def K_means(x,y,z,n,plot=False):
