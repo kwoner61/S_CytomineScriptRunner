@@ -32,11 +32,11 @@ def main(argv):
       
       cj.job.update(status=Job.RUNNING, progress=30+i, statusComment=f'Running Segmentation for annotation {annotation.id}...')
       annotation.dump(dest_pattern=img_src)
-      img = cv2.imread(img_src)
+      img = cv2.cvtColor(cv2.imread(img_src), cv2.COLOR_BGR2RGB)
       img_uri = upload_job_data(cj.job.id, img_name, img_src)
 
       seg, stats = segscript.K_means_seg(img, n)
-      masked, updated_stats = segscript.rgb_mask(seg, stats.copy())
+      masked, updated_stats = segscript.rgb_mask(n, seg, stats.copy())
       
       Image.fromarray(masked).save(os.path.join(working_dir, seg_image_name))
       masked_uri = upload_job_data(cj.job.id, seg_image_name, os.path.join(working_dir, seg_image_name))
