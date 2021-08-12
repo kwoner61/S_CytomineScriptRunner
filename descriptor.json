@@ -51,6 +51,28 @@
             "type": "Number",
             "value-key": "[@ID]",
             "command-line-flag": "--@id"
+        },
+        {
+            "id": "cytomine_id_terms",
+            "name": "Terms to analyze",
+            "set-by-server": false,
+            "optional": false,
+            "type": "ListDomain",
+            "value-key": "[@ID]",
+            "command-line-flag": "--@id",
+            "uri": "/api/ontology/$currentOntology$/term.json",
+            "uri-print-attribute": "name",
+            "uri-sort-attribute": "name"
+        },
+        {
+            "id": "max_size",
+            "name": "Max width of annotation to analyze",
+            "set-by-server": false,
+            "optional": true,
+            "type": "Number",
+            "value-key": "[@ID]",
+            "command-line-flag": "--@id",
+            "default-value": 1024
         }
     ]
 }

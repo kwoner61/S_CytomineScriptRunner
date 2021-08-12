@@ -19,6 +19,7 @@ def main(argv):
     cj.job.update(status=Job.RUNNING, progress=0, statusComment='Starting...')
     annotations = AnnotationCollection()
     annotations.project = cj.parameters.cytomine_id_project
+    annotations.terms = cj.parameters.cytomine_id_terms
 
     cj.job.update(status=Job.RUNNING, progress=10, statusComment='Fetching annotations...')
     annotations.fetch()
@@ -31,7 +32,7 @@ def main(argv):
       img_src = os.path.join(working_dir, img_name)
       
       cj.job.update(status=Job.RUNNING, progress=30+i, statusComment=f'Running Segmentation for annotation {annotation.id}...')
-      annotation.dump(dest_pattern=img_src)
+      annotation.dump(dest_pattern=img_src, max_size=cj.parameters.max_size)
       img = cv2.cvtColor(cv2.imread(img_src), cv2.COLOR_BGR2RGB)
       img_uri = upload_job_data(cj.job.id, img_name, img_src)
 
