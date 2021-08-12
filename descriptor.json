@@ -72,7 +72,7 @@
             "type": "Number",
             "value-key": "[@ID]",
             "command-line-flag": "--@id",
-            "default-value": 1024
+            "default-value": 512
         }
     ]
 }
