@@ -5,39 +5,21 @@ from bs4 import BeautifulSoup
 from sklearn.cluster import KMeans
 
 
-def rgb_mask(k, segmented_image, clusters):
+def rgb_mask(k, segmented_image, clusters, replacement_colors):
   # clusters: key=rgb_sum --> value=[r, g, b, area]
   color_map = []
 
-  # Find & Replace White
-  replace_rgb(250,250,250, clusters, segmented_image, color_map)
-
-  # Find & Replace Black
-  replace_rgb(30,30,30, clusters, segmented_image, color_map)
-
-  # Find & Replace Green
-  replace_rgb(0,255,0, clusters, segmented_image, color_map)
-
-  # Find & Replace Red
-  replace_rgb(255,0,0, clusters, segmented_image, color_map)
-
-  # Find & Replace Blue
-  if k > 4:
-    replace_rgb(0,0,255, clusters, segmented_image, color_map)
-
-  # Find & Replace 6th color
-  if k > 5:
-    replace_rgb(255,255,102, clusters, segmented_image, color_map)
-
+  for i in range(k):
+    replace_rgb(replacement_colors[i], clusters, segmented_image, color_map)
   return segmented_image, color_map
 
 
-def replace_rgb(r, g, b, clusters, data, color_map):
-  cluster = find_nearest_cluster(r, g, b, clusters)
+def replace_rgb(color, clusters, data, color_map):
+  cluster = find_nearest_cluster(color[0], color[1], color[2], clusters)
   red, green, blue = data[:,:,0], data[:,:,1], data[:,:,2]
   mask = (red == cluster[0]) & (green == cluster[1]) & (blue == cluster[2])
-  data[:,:,:3][mask] = [r, g, b]
-  color_map.append(cluster + [r, g, b])
+  data[:,:,:3][mask] = color
+  color_map.append(cluster + color)
 
 
 def find_nearest_cluster(r, g, b, clusters):

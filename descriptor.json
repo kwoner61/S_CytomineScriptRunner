@@ -1,8 +1,8 @@
 {
     "name": "CytomineScriptRunner",
-    "description": "This Cytomine App will run image segmentation using K-Means.",
+    "description": "This Cytomine App will run image segmentation using K-Means clustering.",
     "schema-version": "cytomine-0.1",
-    "command-line": "python /CytomineScriptRunner/app.py [CYTOMINE_HOST] [CYTOMINE_PUBLIC_KEY] [CYTOMINE_PRIVATE_KEY] [CYTOMINE_ID_PROJECT] [CYTOMINE_ID_SOFTWARE] [CYTOMINE_ID_TERMS] [MAX_SIZE]",
+    "command-line": "python /CytomineScriptRunner/app.py [CYTOMINE_HOST] [CYTOMINE_PUBLIC_KEY] [CYTOMINE_PRIVATE_KEY] [CYTOMINE_ID_PROJECT] [CYTOMINE_ID_SOFTWARE] [CYTOMINE_ID_TERMS] [MAX_SIZE] [COLOR_1] [COLOR_2] [COLOR_3] [COLOR_4] [COLOR_5]",
     "container-image": {
         "image": "dockerlamis/s_cytominescriptrunner",
         "type": "singularity"
@@ -73,6 +73,56 @@
             "value-key": "[@ID]",
             "command-line-flag": "--@id",
             "default-value": 512
+        },
+        {
+            "id": "color_1",
+            "name": "Replacement color 1: R,G,B",
+            "set-by-server": false,
+            "optional": true,
+            "type": "String",
+            "value-key": "[@ID]",
+            "command-line-flag": "--@id",
+            "default-value": "184,113,143"
+        },
+        {
+            "id": "color_2",
+            "name": "Replacement color 2: R,G,B",
+            "set-by-server": false,
+            "optional": true,
+            "type": "String",
+            "value-key": "[@ID]",
+            "command-line-flag": "--@id",
+            "default-value": "140,108,77"
+        },
+        {
+            "id": "color_3",
+            "name": "Replacement color 3: R,G,B",
+            "set-by-server": false,
+            "optional": true,
+            "type": "String",
+            "value-key": "[@ID]",
+            "command-line-flag": "--@id",
+            "default-value": "134,50,88"
+        },
+        {
+            "id": "color_4",
+            "name": "Replacement color 4: R,G,B",
+            "set-by-server": false,
+            "optional": true,
+            "type": "String",
+            "value-key": "[@ID]",
+            "command-line-flag": "--@id",
+            "default-value": "230,230,230"
+        },
+        {
+            "id": "color_5",
+            "name": "Replacement color 5: R,G,B",
+            "set-by-server": false,
+            "optional": true,
+            "type": "String",
+            "value-key": "[@ID]",
+            "command-line-flag": "--@id",
+            "default-value": "30,30,30"
         }
     ]
 }
