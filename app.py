@@ -20,6 +20,8 @@ def main(argv):
     annotations = AnnotationCollection()
     annotations.project = cj.parameters.cytomine_id_project
     annotations.terms = cj.parameters.cytomine_id_terms
+    replacement_colors = get_replacement_colors(cj.parameters.color_1,
+        cj.parameters.color_2, cj.parameters.color_3,  cj.parameters.color_4,  cj.parameters.color_5)
 
     cj.job.update(status=Job.RUNNING, progress=10, statusComment='Fetching annotations...')
     annotations.fetch()
@@ -37,7 +39,7 @@ def main(argv):
       img_uri = upload_job_data(cj.job.id, img_name, img_src)
 
       seg, stats = segscript.K_means_seg(img, n)
-      masked, updated_stats = segscript.rgb_mask(n, seg, stats.copy())
+      masked, updated_stats = segscript.rgb_mask(n, seg, stats.copy(), replacement_colors)
       
       Image.fromarray(masked).save(os.path.join(working_dir, seg_image_name))
       masked_uri = upload_job_data(cj.job.id, seg_image_name, os.path.join(working_dir, seg_image_name))
@@ -65,6 +67,14 @@ def upload_job_data(job_id, key, filename):
 def get_img_src(job_data_uri):
   return f'https://test.cytomine.lamis.life/api/{job_data_uri}/view'
 
+
+def get_replacement_colors(c1, c2, c3, c4, c5):
+  colors = []
+  for c in [c1, c2, c3, c4, c5]:
+    color = rgb_string.split(',')
+    color = list(map(int, color))
+    colors.append(color)
+  return colors
 
 if __name__ == '__main__':
   main(sys.argv[1:])
