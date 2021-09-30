@@ -1,5 +1,6 @@
 import numpy as np
 import pandas as pd
+from pathlib import Path
 from math import pow, sqrt
 from bs4 import BeautifulSoup
 from sklearn.cluster import KMeans
@@ -70,7 +71,7 @@ def K_means_seg(img, n):
 def generate_combined_report(n, image_names, seg_img_names, stats_lists, report_file, template_file):
   with open(template_file, 'r') as fp:
     soup = BeautifulSoup(fp, 'html.parser')
-    soup.find('title').string = "combined-k{n}"
+    soup.find('title').string = f'Segmentation Report k={n}'
 
     # ids 0, 2, 4 are original images
     for i in range(len(image_names)):
@@ -92,11 +93,27 @@ def generate_combined_report(n, image_names, seg_img_names, stats_lists, report_
       for stat in img_group:
         # A1, B1, C1
         # A2, B2, C2, etc.
-        
-        soup.find('td', id=letters[l] + f'{j}').string = str(round(stat[3] * 100, 1))
+        area_p = stat[3]
+        soup.find('td', id=letters[l] + f'{j}').string = str(round(area_p * 100, 1))
         j += 1
       j = 1
       l += 1
+
+    # update Image labels A, B, C
+    l = 0
+    for letter in letters:
+      img_name = Path(image_names[l]).with_suffix('')
+      soup.find('th', id=f'{letter}_IMG_NAME').string = f'{letter}: {img_name}'
+
+    # insert new RGB values into table; 'New Color' column
+    j = 1
+    for img_group in stats_lists:
+      for stat in img_group:
+        new_r, new_g, new_b = stat[4], stat[5], stat[6]
+        soup.find('td', id=f'RGB_VALUE{j}').string = f'[{new_r}, {new_g}, {new_b}]'
+        soup.find('td', id=f'RGB_PATCH{j}')['style'] = f'background-color: rgb({new_r}, {new_g}, {new_b});'
+        j += 1
+      j = 1
 
     with open(report_file, 'wb') as fp:
       fp.write(soup.prettify('utf-8'))
