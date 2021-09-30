@@ -99,12 +99,6 @@ def generate_combined_report(n, image_names, seg_img_names, stats_lists, report_
       j = 1
       l += 1
 
-    # update Image labels A, B, C
-    l = 0
-    for letter in letters:
-      img_name = Path(image_names[l]).with_suffix('')
-      soup.find('th', id=f'{letter}_IMG_NAME').string = f'{letter}: {img_name}'
-
     # insert new RGB values into table; 'New Color' column
     j = 1
     for img_group in stats_lists:

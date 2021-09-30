@@ -82,7 +82,7 @@
             "type": "String",
             "value-key": "[@ID]",
             "command-line-flag": "--@id",
-            "default-value": "184,113,143"
+            "default-value": "230,230,230"
         },
         {
             "id": "color_2",
@@ -92,7 +92,7 @@
             "type": "String",
             "value-key": "[@ID]",
             "command-line-flag": "--@id",
-            "default-value": "140,108,77"
+            "default-value": "30,30,30"
         },
         {
             "id": "color_3",
@@ -102,7 +102,7 @@
             "type": "String",
             "value-key": "[@ID]",
             "command-line-flag": "--@id",
-            "default-value": "134,50,88"
+            "default-value": "255,0,0"
         },
         {
             "id": "color_4",
@@ -112,7 +112,7 @@
             "type": "String",
             "value-key": "[@ID]",
             "command-line-flag": "--@id",
-            "default-value": "111,89,104"
+            "default-value": "0,255,0"
         },
         {
             "id": "color_5",
@@ -122,7 +122,7 @@
             "type": "String",
             "value-key": "[@ID]",
             "command-line-flag": "--@id",
-            "default-value": "230,230,230"
+            "default-value": "0,0,255"
         },
         {
             "id": "color_6",
@@ -132,7 +132,7 @@
             "type": "String",
             "value-key": "[@ID]",
             "command-line-flag": "--@id",
-            "default-value": "30,30,30"
+            "default-value": "255,255,102"
         }
     ]
 }
