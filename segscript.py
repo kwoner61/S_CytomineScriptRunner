@@ -4,6 +4,8 @@ from math import pow, sqrt
 from bs4 import BeautifulSoup
 from sklearn.cluster import KMeans
 
+from segmentation_job import SegmentationJobCollection
+
 
 def rgb_mask(k, segmented_image, clusters, replacement_colors):
     # clusters: key=rgb_sum --> value=[r, g, b, area]
@@ -44,12 +46,12 @@ def k_means(x, y, z, n):
     return labels, centroids
 
 
-def k_means_seg(img, n):
+def k_means_seg(img, seg_jobs: SegmentationJobCollection):
     img_resized = np.resize(img, (img.shape[0] * img.shape[1], 3))
     labels, centroids = k_means(img_resized[:, 0],
                                 img_resized[:, 1],
                                 img_resized[:, 2],
-                                n=n)
+                                n=seg_jobs.k)
 
     # Color segmentation
     centroids = np.uint8(centroids)  # 0 to 255
