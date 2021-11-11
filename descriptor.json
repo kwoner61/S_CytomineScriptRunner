@@ -4,7 +4,7 @@
     "schema-version": "cytomine-0.1",
     "command-line": "python /CytomineScriptRunner/app.py [CYTOMINE_HOST] [CYTOMINE_PUBLIC_KEY] [CYTOMINE_PRIVATE_KEY] [CYTOMINE_ID_PROJECT] [CYTOMINE_ID_SOFTWARE] [CYTOMINE_ID_TERMS] [MAX_SIZE] [COLOR_1] [COLOR_2] [COLOR_3] [COLOR_4] [COLOR_5] [COLOR_6]",
     "container-image": {
-        "image": "dockerlamis/s_cytominescriptrunner",
+        "image": "dockerlamis/s_segmentation_kmeans",
         "type": "singularity"
     },
     "inputs": [{
