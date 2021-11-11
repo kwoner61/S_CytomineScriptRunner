@@ -116,6 +116,7 @@ def upload_job_data(job_id, key, filename):
     job_data = JobData(job_id, key, filename)
     job_data = job_data.save()
     saved_data = job_data.upload(filename)
+    os.remove(filename)
     return saved_data.uri().replace('.json', '')
 
 
