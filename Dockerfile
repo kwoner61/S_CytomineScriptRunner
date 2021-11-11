@@ -5,6 +5,7 @@ RUN mkdir /CytomineScriptRunner
 
 ADD combined_report_template.html /CytomineScriptRunner/combined_report_template.html
 ADD segscript.py /CytomineScriptRunner/segscript.py
+ADD segmentation_job.py /CytomineScriptRunner/segmentation_job.py
 ADD app.py /CytomineScriptRunner/app.py
 
 RUN chmod -R 777 /CytomineScriptRunner

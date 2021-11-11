@@ -33,8 +33,8 @@ def main(argv):
         image_names = []
         num_annotations = len(annotations)
         for annotation in annotations:
-            img_name = get_image_file_name(annotation.image, annotations.project)
-            seg_image_name = get_image_file_name(img_name)
+            img_name = get_image_file_name(annotation.image, annotations.project, annotation.id)
+            seg_image_name = "seg_" + img_name
             img_src = os.path.join(working_dir, img_name)
 
             mid_progress = 20 + round(i / num_annotations)
